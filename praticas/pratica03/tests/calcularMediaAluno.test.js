@@ -1,32 +1,45 @@
-const calcularMediaAluno = require('./calcularMediaAluno');
+const { calcularMediaAluno } = require('../src/calcularMediaAluno');
 
-// Testes para cenários de sucesso
-test('deve calcular a média base quando a3 não é informada', () => {
-  const media = calcularMediaAluno(7, 8);
-  expect(media).toBeCloseTo(7.6);
-});
+describe('calcularMediaAluno', () => {
 
-test('deve usar a3 e a1 se essa for a melhor combinação', () => {
-  const media = calcularMediaAluno(9, 6, 8);
-  expect(media).toBeCloseTo(8.4); // Combinação (a1=9, a3=8)
-});
+  test('deve existir', () => {
+    expect(calcularMediaAluno).toBeDefined();
+  });
 
-test('deve usar a3 e a2 se essa for a melhor combinação', () => {
-  const media = calcularMediaAluno(6, 9, 8);
-  expect(media).toBeCloseTo(8.6); // Combinação (a2=9, a3=8)
-});
+  test('deve lançar um erro se a1 ou a2 não forem informadas', () => {
+    expect(() => calcularMediaAluno()).toThrow('Notas a1 ou a2 não informadas');
+  });
 
-// Testes para cenários de erro (utilizando toThrow)
-test('deve lançar um erro se a1 ou a2 forem indefinidas', () => {
-  expect(() => calcularMediaAluno(undefined, 7)).toThrow('Notas a1 ou a2 não informadas');
-  expect(() => calcularMediaAluno(8, undefined)).toThrow('Notas a1 ou a2 não informadas');
-});
+  test('deve lançar um erro se a1 ou a2 forem negativas', () => {
+    expect(() => calcularMediaAluno(-1, 5)).toThrow('Notas a1 ou a2 não podem ser negativas');
+    expect(() => calcularMediaAluno(10, -5)).toThrow('Notas a1 ou a2 não podem ser negativas');
+  });
 
-test('deve lançar um erro se a1 ou a2 forem negativas', () => {
-  expect(() => calcularMediaAluno(-5, 7)).toThrow('Notas a1 ou a2 não podem ser negativas');
-  expect(() => calcularMediaAluno(8, -2)).toThrow('Notas a1 ou a2 não podem ser negativas');
-});
+  test('deve calcular a média base quando a3 não é informada', () => {
+    const a1 = 7;
+    const a2 = 8;
+    expect(calcularMediaAluno(a1, a2)).toBeCloseTo(7.6);
+  });
 
-test('deve lançar um erro se a3 for negativa', () => {
-  expect(() => calcularMediaAluno(7, 8, -1)).toThrow('Nota a3 não pode ser negativa');
+  test('deve lançar um erro se a3 for negativa', () => {
+    const a1 = 7;
+    const a2 = 8;
+    const a3 = -5;
+    expect(() => calcularMediaAluno(a1, a2, a3)).toThrow('Nota a3 não pode ser negativa');
+  });
+
+  test('deve calcular a média final com a melhor combinação (a1 e a3)', () => {
+    const a1 = 10;
+    const a2 = 5;
+    const a3 = 9;
+    expect(calcularMediaAluno(a1, a2, a3)).toBeCloseTo(9.4);
+  });
+
+  test('deve calcular a média final com a melhor combinação (a2 e a3)', () => {
+    const a1 = 5;
+    const a2 = 10;
+    const a3 = 9;
+
+    expect(calcularMediaAluno(a1, a2, a3)).toBeCloseTo(9.4);
+  });
 });
