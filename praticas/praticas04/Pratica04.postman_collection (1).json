@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "de4f717d-d10a-478a-9b96-a73080e3a038",
+		"name": "Pratica04",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48376915"
+	},
+	"item": [
+		{
+			"name": "GET Tarefa por ID - Erro 404",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tarefas/999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tarefas",
+						"999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Tarefa por ID - Erro 404",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tarefas/999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tarefas",
+						"999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Tarefa - Erro 404",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tarefas/999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tarefas",
+						"999"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
